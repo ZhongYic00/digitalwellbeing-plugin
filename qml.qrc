@@ -1,1 +1,11 @@
-/home/zyc/Coding/Qt/Digital-Wellbeing/qml.qrc
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/UsageRanking.qml</file>
+        <file>qml/utils.js</file>
+        <file>qml/Applet.qml</file>
+        <file>qml/PieChart.qml</file>
+        <file>qml/BarChart.qml</file>
+        <file>qml/PluginItem.qml</file>
+    </qresource>
+</RCC>
