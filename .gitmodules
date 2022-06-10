@@ -1,0 +1,3 @@
+[submodule "qtquick-dtk-style"]
+	path = qtquick-dtk-style
+	url = https://github.com/ZhongYic00/QtQuick-DTK-style.git

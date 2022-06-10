@@ -15,7 +15,10 @@ project(${PLUGIN_NAME})
 # 指定所有源码文件
 # 使用了 cmake 的 file 命令，递归查找项目目录下所有头文件和源码文件，
 # 并将结果放入 SRCS 变量中，SRCS 变量可用于后续使用
-file(GLOB_RECURSE SRCS "*.h" "*.cpp" "*.qrc" "dtk/*.h" "dtk/*.cpp" "dtk/*.qrc")
+file(GLOB_RECURSE SRCS
+    LIST_DIRECTORIES false
+    "src/*" "qtquick-dtk-style/src/*")
+#file(GLOB_RECURSE SRCS "qtquick-dtk-style/src/include/*")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 

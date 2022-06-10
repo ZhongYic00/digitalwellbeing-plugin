@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QQmlEngine>
 #include <QtQml>
-#include "dtk/include/qtquickdtk.h"
+#include "qtquick-dtk-style/src/include/qtquickdtk.h"
 
 pluginWidget::pluginWidget()
 {

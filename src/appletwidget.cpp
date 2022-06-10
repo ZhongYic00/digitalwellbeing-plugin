@@ -1,6 +1,6 @@
 #include "appletwidget.h"
 #include "fromthemeprovider.h"
-#include "dtk/include/qtquickdtk.h"
+#include "qtquick-dtk-style/src/include/qtquickdtk.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QQmlEngine>

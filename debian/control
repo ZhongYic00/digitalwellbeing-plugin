@@ -1,0 +1,15 @@
+Source: digitalwellbeing-plugin
+Section: utils
+Priority: optional
+Maintainer: Yicheng Zhong <zhong200234@outlook.com>
+Build-Depends: debhelper (>= 11), libdtkcore-dev, libdtkgui-dev, dde-dock-dev, libqt5dbus5, libqt5qml5, qml-module-qtquick-controls2, qml-module-qtquick2, qml-module-qtcharts, qml-module-qtquick-layouts
+Standards-Version: 4.1.3
+Homepage: https://github.com/ZhongYic00/digitalwellbeing-plugin
+Vcs-Browser: https://github.com/zhongyic00/digitalwellbeing-plugin
+Vcs-Git: https://github.com/zhongyic00/digitalwellbeing-plugin.git
+
+Package: digitalwellbeing-plugin
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A dde-dock plugin that provides convenient viewing of your digital-wellbeing status
+ A dde-dock plugin that provides convenient viewing of your digital-wellbeing status, which includes your screen time, your most used apps by frequency or time, each app's usage and so on.
