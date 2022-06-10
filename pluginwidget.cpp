@@ -12,7 +12,7 @@ pluginWidget::pluginWidget()
     auto layout=this->layout();
     if(!layout)layout=new QHBoxLayout(this);
 
-    setMinimumSize(90,40);
+    setMinimumSize(90,50);
 
     m_quickwidget=new QQuickWidget(this);
     m_quickwidget->setAutoFillBackground(false);
@@ -26,13 +26,13 @@ pluginWidget::pluginWidget()
     layout->addWidget(m_quickwidget);
     layout->setMargin(0);
     setLayout(layout);
-    qWarning()<<">>>>>>>>>>>>>>>>>>>>widget status:"<<m_quickwidget->status()<<this->sizeHint();
+    qDebug()<<">>>pluginWidget status:"<<m_quickwidget->status()<<" size:"<<this->sizeHint();
 }
 void pluginWidget::setProperty(QString property, QString value){
     m_quickwidget->engine()->rootContext()->setContextProperty(property,value);
 }
 void pluginWidget::resizeEvent(QResizeEvent *event){
-    qWarning()<<">>>resizeEvent"<<event->size();
+//    qDebug()<<">>>resizeEvent"<<event->size();
     if(isVisible()){
         emit requestUpdateGeometry();
     }

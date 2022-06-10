@@ -10,7 +10,6 @@ class appletWidget:public QWidget
 public:
     appletWidget();
     void setProperty(QString property,QString json);
-//    QSize sizeHint() const override{return QSize(80,50);}
 private:
     QQuickWidget *quickwidget;
 };

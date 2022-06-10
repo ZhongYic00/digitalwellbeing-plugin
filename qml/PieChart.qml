@@ -24,7 +24,7 @@ ChartView {
     //    backgroundColor: Qt.rgba(1, 1, 1, 0.2)
     backgroundColor: "transparent"
     plotAreaColor: "transparent"
-    onHeightChanged: console.warn('piechart', height, implicitHeight)
+    onHeightChanged: console.log('piechart', height, implicitHeight)
 
     PieSeries {
         size: 0.85
@@ -42,7 +42,7 @@ ChartView {
         }
         property var curSlice: null
         onClicked: slice => {
-                       //                                       console.warn('clicked', slice)
+                       //                                       console.log('clicked', slice)
                        if (curSlice)
                        curSlice.exploded = curSlice.labelVisible = false
                        if (curSlice !== slice) {
@@ -58,7 +58,7 @@ ChartView {
         x: 0
         y: (parent.height - height) / 2
         width: parent.width
-        Component.onCompleted: console.warn(parent.width, width, height, x, y)
+        Component.onCompleted: console.log(parent.width, width, height, x, y)
         Text {
             text: pieSeries.curSlice ? pieSeries.curSlice.label : "Today"
             width: parent.width * 0.55
@@ -71,7 +71,7 @@ ChartView {
 
             color: Qt.rgba(0, 0, 0, 0.6)
             font.pointSize: 19
-            onWidthChanged: console.warn('text', width)
+            //            onWidthChanged: console.log('text', width)
         }
         Text {
             text: U.getTimeString(

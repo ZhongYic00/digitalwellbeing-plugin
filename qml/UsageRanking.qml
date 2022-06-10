@@ -10,12 +10,12 @@ Column {
     property bool folded: false
     property bool foldable: false
     onImplicitHeightChanged: foldable = foldable || implicitHeight > 250
-    onHeightChanged: console.warn('usageranking', height, implicitHeight)
+    onHeightChanged: console.log('usageranking', height, implicitHeight)
     Column {
         height: list.folded ? 200 : implicitHeight
         clip: true
         Repeater {
-            Component.onCompleted: console.warn('list', listmodel.count)
+            Component.onCompleted: console.log('list', listmodel.count)
             model: listmodel
             delegate: Rectangle {
                 width: list.width
@@ -61,7 +61,7 @@ Column {
         icon.color: "black"
         onClicked: {
             list.folded = !list.folded
-            console.warn('tapped', list.height, list.implicitHeight)
+            console.log('tapped', list.height, list.implicitHeight)
         }
     }
 }

@@ -4,7 +4,7 @@ import "utils.js" as U
 
 Item {
     implicitWidth: 90
-    implicitHeight: 40
+    implicitHeight: 50
     id: root
     property var stats: JSON.parse(BasicStat)
     Timer {
@@ -14,7 +14,8 @@ Item {
         running: true
         onTriggered: view.currentIndex = (view.currentIndex + 1) % view.count
     }
-    onStatsChanged: console.warn('stats changed', JSON.stringify(stats))
+    //    onStatsChanged: console.log('stats changed', JSON.stringify(stats))
+    //    Component.onCompleted: console.warn('height', height, implicitHeight)
     function update() {
         let basicStat = JSON.parse(basicStat_)
         stats = {
@@ -22,21 +23,31 @@ Item {
             "longestUsedApp": basicStat.longestUsedApp
         }
     }
+
+    //    Rectangle {
+    //        anchors.fill: parent
+    //        color: "red"
+    //    }
     SwipeView {
         id: view
 
         currentIndex: 0
         anchors.fill: parent
         anchors.verticalCenter: parent.verticalCenter
+        topPadding: 8
 
         Column {
             id: firstPage
             spacing: 0
+            anchors.verticalCenter: parent.verticalCenter
+            //            Component.onCompleted: console.warn(height, implicitHeight,
+            //                                                anchors.topMargin,
+            //                                                anchors.bottomMargin)
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 topPadding: -5
                 text: U.getTimeString(stats.totalTime)
-                font.pointSize: 11
+                font.pointSize: 10
                 lineHeight: 0.8
             }
             Text {
@@ -49,14 +60,15 @@ Item {
         Column {
             id: secondPage
             spacing: 0
+            anchors.verticalCenter: parent.verticalCenter
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 topPadding: -5
                 width: root.width
                 elide: Text.ElideMiddle
                 horizontalAlignment: Text.AlignHCenter
-                text: stats.longestUsedApp || ''
-                font.pointSize: 11
+                text: stats.longestUsedApp || '<unknown>'
+                font.pointSize: 10
                 lineHeight: 0.8
             }
             Text {

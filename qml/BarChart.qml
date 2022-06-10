@@ -33,24 +33,24 @@ ChartView {
                                                          }, [])
                              while (summary.length < 24)
                              summary.push({})
-                             //                             console.warn(JSON.stringify(summary))
+                             //                             console.log(JSON.stringify(summary))
                              let cnt = 0
                              for (let app in apps) {
                                  for (var i = 0; i < 24; i++)
                                  apps[app].push(summary[i][app] / 60 || 0)
                                  cnt++
-                                 console.warn(apps[app])
+                                 console.log(apps[app])
                                  if (app != "dde-lock")
                                  barSeries.append(app, apps[app])
                              }
-                             console.warn(JSON.stringify(apps))
+                             console.log(JSON.stringify(apps))
                          }
     theme: ChartView.ChartThemeLight
     antialiasing: true
     legend.visible: false
     backgroundColor: "transparent"
     plotAreaColor: "transparent"
-    onHeightChanged: console.warn('barchart', height, implicitHeight)
+    onHeightChanged: console.log('barchart', height, implicitHeight)
 
     StackedBarSeries {
         id: barSeries
@@ -67,7 +67,7 @@ ChartView {
             min: 0
             max: 60
             labelFormat: '%.0f min'
-            onMaxChanged: console.warn('mxchanged', max)
+            onMaxChanged: console.log('mxchanged', max)
         }
 
         //        BarSet {

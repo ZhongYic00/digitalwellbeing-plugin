@@ -19,16 +19,16 @@ public:
     explicit DigitalWellbeingPlugin(QObject *parent = nullptr);
 
     // 返回插件的名称，必须是唯一值，不可以和其它插件冲突
-    const QString pluginName() const override{return  "digitalwellbeing";}
+    const QString pluginName() const override{return  "datetime";}
     const QString pluginDisplayName() const override{return  QStringLiteral("Digital Wellbeing");}
     bool pluginIsAllowDisable() override { return true; }
     bool pluginIsDisable() override {
-        qWarning()<<">>>>>>pluginIsDisable"<<m_proxyInter->getValue(this, "disabled", false).toBool();
+//        qWarning()<<">>>pluginIsDisable"<<m_proxyInter->getValue(this, "disabled", false).toBool();
         return m_proxyInter->getValue(this, "disabled", false).toBool();
     }
     void pluginStateSwitched() override;
     PluginSizePolicy pluginSizePolicy() const override {
-        qWarning()<<">>>pluginSizePolicy()";
+        qDebug()<<">>>pluginSizePolicy()";
         return Custom;
     }
 
@@ -47,69 +47,3 @@ private:
 };
 
 #endif // HELLOWORLDPLUGIN_H
-
-//#ifndef DATETIMEPLUGIN_H
-//#define DATETIMEPLUGIN_H
-
-//#include "pluginsiteminterface.h"
-//#include "datetimewidget.h"
-
-//#include <QTimer>
-//#include <QLabel>
-//#include <QSettings>
-
-//namespace Dock{
-//class TipsWidget;
-//}
-//class QDBusInterface;
-//class DatetimePlugin : public QObject, PluginsItemInterface
-//{
-//    Q_OBJECT
-//    Q_INTERFACES(PluginsItemInterface)
-//    Q_PLUGIN_METADATA(IID "com.deepin.dock.PluginsItemInterface" FILE "digitalwellbeing.json")
-
-//public:
-//    explicit DatetimePlugin(QObject *parent = nullptr);
-
-//    PluginSizePolicy pluginSizePolicy() const override;
-
-//    const QString pluginName() const override;
-//    const QString pluginDisplayName() const override;
-//    void init(PluginProxyInterface *proxyInter) override;
-
-//    void pluginStateSwitched() override;
-//    bool pluginIsAllowDisable() override { return true; }
-//    bool pluginIsDisable() override;
-
-//    int itemSortKey(const QString &itemKey) override;
-//    void setSortKey(const QString &itemKey, const int order) override;
-
-//    QWidget *itemWidget(const QString &itemKey) override;
-//    QWidget *itemTipsWidget(const QString &itemKey) override;
-
-//    const QString itemCommand(const QString &itemKey) override;
-//    const QString itemContextMenu(const QString &itemKey) override;
-
-//    void invokedMenuItem(const QString &itemKey, const QString &menuId, const bool checked) override;
-
-//    void pluginSettingsChanged() override;
-
-//private slots:
-//    void updateCurrentTimeString();
-//    void refreshPluginItemsVisible();
-//    void propertiesChanged();
-
-//private:
-//    void loadPlugin();
-//    QDBusInterface *timedateInterface();
-
-//private:
-//    QScopedPointer<DatetimeWidget> m_centralWidget;
-////    QScopedPointer<Dock::TipsWidget> m_dateTipsLabel;
-//    QTimer *m_refershTimer;
-//    QString m_currentTimeString;
-//    QDBusInterface *m_interface;
-//    bool m_pluginLoaded;
-//};
-
-//#endif // DATETIMEPLUGIN_H

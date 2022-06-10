@@ -12,8 +12,8 @@ Rectangle {
     color: Qt.rgba(1, 1, 1, 0.1)
 
     function update() {
-        console.warn('>>>>>>>DPalette test', DPalette.highlitedText, DPalette,
-                     DPalette.button, DPalette.highlight)
+        //        console.log('>>>>>>>DPalette test', DPalette.highlitedText, DPalette,
+        //                     DPalette.button, DPalette.highlight)
         sortedByFreqModel.clear()
         sortedByTimeModel.clear()
         let records = JSON.parse(PerAppStatDaily)
@@ -41,9 +41,9 @@ Rectangle {
         id: scrollview
         clip: true
         contentHeight: expand.height + piePane.height + barPane.height + rankingPane.height + 20
-        onContentHeightChanged: console.warn('scrollview', width, height,
-                                             contentHeight,
-                                             contentWidth, spacing)
+        onContentHeightChanged: console.log('scrollview', width, height,
+                                            contentHeight,
+                                            contentWidth, spacing)
         ColumnLayout {
             anchors.top: parent.top
             anchors.topMargin: 10
@@ -60,9 +60,9 @@ Rectangle {
                 Layout.rightMargin: 10
                 Layout.fillWidth: true
                 padding: 0
-                Component.onCompleted: console.warn('piepane', height,
-                                                    contentHeight,
-                                                    pieChart.implicitHeight)
+                Component.onCompleted: console.log('piepane', height,
+                                                   contentHeight,
+                                                   pieChart.implicitHeight)
                 background: Rectangle {
                     id: pieBg
                     color: Qt.rgba(1, 1, 1, 0.3)
@@ -141,10 +141,9 @@ Rectangle {
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 Layout.fillWidth: true
-                onHeightChanged: console.warn("ColLayout", height,
-                                              implicitHeight, list.height,
-                                              list.implicitHeight,
-                                              contentHeight)
+                onHeightChanged: console.log("ColLayout", height,
+                                             implicitHeight, list.height,
+                                             list.implicitHeight, contentHeight)
                 implicitHeight: contentHeight
                 bottomPadding: 20
                 ColumnLayout {

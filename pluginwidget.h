@@ -13,13 +13,9 @@ public:
     void setProperty(QString property,QString value);
     QSize sizeHint() const{
 //        qWarning()<<">>>>>>>pluginWidget::sizeHint"<<m_quickwidget->sizeHint();
-        if(!isVisible())return QSize(0,0);
+//        if(!isVisible())return QSize(0,0);
         return m_quickwidget->sizeHint();
     }
-//    void resize(int w,int h){
-//        qWarning()<<">>>resize"<<w<<','<<h;
-//        QWidget::resize(w,h);
-//    }
 
 protected:
     void resizeEvent(QResizeEvent *event);

@@ -5,8 +5,8 @@
 
 const auto dcall=[](QDBusMessage msg){
     auto resp=QDBusConnection::sessionBus().call(msg);
-        qWarning()<<"dcall::("<<msg<<")"<<resp;
-    return resp.type()==QDBusMessage::ReplyMessage?resp.arguments():QList<QVariant>();
+    qDebug()<<"dcall::("<<msg<<")"<<resp;
+    return resp.type()==QDBusMessage::ReplyMessage?resp.arguments():QList<QVariant>({QVariant()});
 };
 
 
