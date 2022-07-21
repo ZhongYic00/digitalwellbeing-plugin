@@ -31,6 +31,9 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+list(APPEND QML_DIRS "qtquick-dtk-style")
+set(QML_IMPORT_PATH "${QML_DIRS}" CACHE STRING "Qt Creator extra qml import paths")
+
 message(STATUS "SLEIDEBUG:${SRCS}")
 
 # 指定要用到的库
