@@ -36,6 +36,7 @@ ChartView {
                              //                             console.log(JSON.stringify(summary))
                              let cnt = 0
                              for (let app in apps) {
+                                 apps[app] = []
                                  for (var i = 0; i < 24; i++)
                                  apps[app].push(summary[i][app] / 60 || 0)
                                  cnt++
@@ -69,18 +70,5 @@ ChartView {
             labelFormat: '%.0f min'
             onMaxChanged: console.log('mxchanged', max)
         }
-
-        //        BarSet {
-        //            label: "Bob"
-        //            values: [202, 2, 3, 4, 5, 6]
-        //        }
-        //        BarSet {
-        //            label: "Susan"
-        //            values: [5, 108, 2, 4, 1, 7]
-        //        }
-        //        BarSet {
-        //            label: "James"
-        //            values: [3, 5, 8, 13, 5, 8]
-        //        }
     }
 }

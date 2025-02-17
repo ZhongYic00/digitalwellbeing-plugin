@@ -1,22 +1,21 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
-import "utils.js" as U
-import singleton.dpalette 1.0
 
-Rectangle {
+import org.deepin.ds 1.0
+import org.deepin.dtk 1.0 as D
+import org.deepin.ds.dock 1.0
+
+import "utils.js" as U
+
+PanelPopup {
     width: 300
     height: 500
-    property string perAppStatDaily_: PerAppStatDaily
-    property string eventsDaily_: EventsDaily
-    color: Qt.rgba(1, 1, 1, 0.1)
 
     function update() {
-        //        console.log('>>>>>>>DPalette test', DPalette.highlitedText, DPalette,
-        //                     DPalette.button, DPalette.highlight)
         sortedByFreqModel.clear()
         sortedByTimeModel.clear()
-        let records = JSON.parse(PerAppStatDaily)
+        let records = JSON.parse(Applet.perAppStatDaily)
         pieChart.update(records)
         records.forEach(record => sortedByTimeModel.append({
                                                                "name": record.name,
@@ -30,10 +29,8 @@ Rectangle {
                                                                "icon": record.icon,
                                                                "stat": record.freq + ' times'
                                                            }))
+        barChart.update(JSON.parse(Applet.eventsDaily))
     }
-
-    onPerAppStatDaily_Changed: update()
-    onEventsDaily_Changed: barChart.update(JSON.parse(EventsDaily))
 
     id: root
     ScrollView {

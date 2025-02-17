@@ -1,3 +1,9 @@
+digitalwellbeing-plugin (0.2.0) UNRELEASED; urgency=medium
+
+  * Adapt to v23, make it dde-shell plugin
+
+ -- Yicheng Zhong <rubbishzyc@outlook.com>  Mon, 17 Feb 2025 17:13:19 +0800
+
 digitalwellbeing-plugin (0.1.0) unstable; urgency=medium
 
   * Initial Release.

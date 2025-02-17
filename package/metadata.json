@@ -1,0 +1,8 @@
+{
+    "Plugin": {
+        "Version": "1.0",
+        "Id": "org.deepin.ds.dock.digitalwellbeing",
+        "Url": "digitalWellbeing.qml",
+        "Parent": "org.deepin.ds.dock"
+    }
+}
