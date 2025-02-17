@@ -11,14 +11,15 @@ class pluginWidget: public QWidget
 public:
     explicit pluginWidget();
     void setProperty(QString property,QString value);
-    QSize sizeHint() const{
+    // void init();
+//     QSize sizeHint() const override{
 //        qWarning()<<">>>>>>>pluginWidget::sizeHint"<<m_quickwidget->sizeHint();
-//        if(!isVisible())return QSize(0,0);
-        return m_quickwidget->sizeHint();
-    }
+// //        if(!isVisible())return QSize(0,0);
+//         return m_quickwidget->sizeHint();
+//     }
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 signals:
     void requestUpdateGeometry() const;

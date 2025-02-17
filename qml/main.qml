@@ -4,17 +4,16 @@ import QtQuick.Controls 2.15
 import QtCharts 2.15
 import QtQuick.Layouts 1.12
 import "utils.js" as U
+// import singleton.dpalette 1.0
 
 Window {
-    width: 90
-    height: 40
+    width: 300
+    height: 400
     visible: true
     Rectangle {
-        width: 90
-        height: 40
+        width: 300
+        height: 400
         color: "grey"
     }
-
-    PluginItem {}
-    //    Applet {}
+    Applet {}
 }

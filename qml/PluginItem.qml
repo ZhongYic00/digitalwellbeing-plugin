@@ -1,13 +1,20 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "utils.js" as U
-import singleton.dpalette 1.0
+// import singleton.dpalette 1.0
 
-Item {
-    implicitWidth: 90
-    implicitHeight: 50
+Rectangle {
+    color: "yellow"
+    implicitWidth: 80
+    implicitHeight: 40
+    width: height / 50 * 90
     id: root
+    objectName: "DigitalWellbeingPluginItem"
     property var stats: JSON.parse(BasicStat)
+    Component.onCompleted: {
+        console.log(this,width,height)
+    }
+
     Timer {
         id: pageSwipeTimer
         interval: 15000
@@ -50,14 +57,14 @@ Item {
                 text: U.getTimeString(stats.totalTime)
                 font.pointSize: 10
                 lineHeight: 0.8
-                color: DPalette.text
+                color: "red"
             }
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Screen Time")
                 font.pointSize: 8
                 lineHeight: 0.8
-                color: DPalette.text
+                color: "red"
             }
         }
         Column {
@@ -73,14 +80,14 @@ Item {
                 text: stats.longestUsedApp || '<unknown>'
                 font.pointSize: 10
                 lineHeight: 0.8
-                color: DPalette.text
+                // color: DPalette.text
             }
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Longest Used")
                 font.pointSize: 8
                 lineHeight: 0.8
-                color: DPalette.text
+                // color: DPalette.text
             }
         }
         //        Item {

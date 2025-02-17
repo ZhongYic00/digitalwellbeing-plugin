@@ -69,6 +69,7 @@ find_package(PkgConfig REQUIRED)
 # DdeDockInterface_LIBRARIES
 # 还有有另外的一些变量以及更灵活的用法，比如一次性查找多个库，这些请自行查找 cmake 文档学习。
 pkg_check_modules(DdeDockInterface REQUIRED dde-dock)
+pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
 
 # add_definitions 命令用于声明/定义一些编译/预处理参数
 # 根据 cmake 文档描述此命令已经有另外几个功能划分的更为细致的命令所取代，具体请查阅文档
@@ -106,6 +107,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE
     ${Qt5Widgets_LIBRARIES}
     ${DtkWidget_LIBRARIES}
     ${DdeDockInterface_LIBRARIES}
+    ${DFrameworkDBus_LIBRARIES}
     Qt5::Qml
     Qt5::Quick
     Qt5::QuickWidgets

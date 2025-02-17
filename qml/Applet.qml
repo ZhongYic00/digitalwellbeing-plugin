@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
 import "utils.js" as U
-import singleton.dpalette 1.0
+// import singleton.dpalette 1.0
 
 Rectangle {
     width: 300
