@@ -1,5 +1,10 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+
+import org.deepin.ds 1.0
+import org.deepin.dtk 1.0 as D
+import org.deepin.ds.dock 1.0
+
 import "utils.js" as U
 
 Column {
@@ -27,12 +32,12 @@ Column {
                                                                    1, 1, 1,
                                                                    0.2) : "transparent"
                 }
-
-                Image {
+                D.DciIcon {
                     id: appicon
-                    source: "image://fromtheme/" + icon
-                    height: parent.height
-                    width: height
+                    name: icon
+                    // scale: Panel.rootObject.dockItemMaxSize * 9 / 14 / parent.height
+                    // // 9:14 (iconSize/dockHeight)
+                    sourceSize: Qt.size(parent.height, parent.height)
                     anchors.left: parent.left
                     anchors.leftMargin: 5
                 }
