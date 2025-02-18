@@ -35,6 +35,7 @@ add_library(dock-digitalwellbeing SHARED
 
 target_link_libraries(dock-digitalwellbeing PRIVATE
     Dde::Shell
+    ${DTK_NS}::Gui
 )
 
 ds_install_package(PACKAGE org.deepin.ds.dock.digitalwellbeing TARGET dock-digitalwellbeing)

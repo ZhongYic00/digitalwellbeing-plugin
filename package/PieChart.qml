@@ -2,7 +2,11 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtCharts 2.15
 import QtQuick.Layouts 1.12
+
+import org.deepin.dtk 1.0 as D
+
 import "utils.js" as U
+
 
 ChartView {
     id: root
@@ -58,33 +62,33 @@ ChartView {
         x: 0
         y: (parent.height - height) / 2
         width: parent.width
+        property real holeWidth: width * 0.6
         Component.onCompleted: console.log(parent.width, width, height, x, y)
-        Text {
+        SemicircleText {
             text: pieSeries.curSlice ? pieSeries.curSlice.label : "Today"
-            width: parent.width * 0.55
+            cR: parent.holeWidth / 2
             anchors.horizontalCenter: parent.horizontalCenter
+            maxFontSize: 26
+            fontColor: D.ColorSelector.textColor
+        }
 
-            horizontalAlignment: Qt.AlignHCenter
-            elide: Text.ElideRight
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            maximumLineCount: 2
-
-            color: Qt.rgba(0, 0, 0, 0.6)
-            font.pointSize: 19
-            //            onWidthChanged: console.log('text', width)
+        Column {
+            width: parent.width
+            height: parent.holeWidth / 2
+            Text {
+                text: U.getTimeString(
+                        pieSeries.curSlice ? pieSeries.curSlice.value : pieSeries.sum)
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "black"
+                font.pointSize: 18
+            }
+            Text {
+                text: pieSeries.curSlice ? U.getPercent(
+                                            pieSeries.curSlice.value / pieSeries.sum) : ''
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
         }
-        Text {
-            text: U.getTimeString(
-                      pieSeries.curSlice ? pieSeries.curSlice.value : pieSeries.sum)
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: "black"
-            font.pointSize: 18
-        }
-        Text {
-            text: pieSeries.curSlice ? U.getPercent(
-                                           pieSeries.curSlice.value / pieSeries.sum) : ''
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
+        
         //                Rectangle {
         //                    width: parent.width * 0.6
         //                    height: 10
