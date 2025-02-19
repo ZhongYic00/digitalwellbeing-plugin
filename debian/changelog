@@ -1,12 +1,13 @@
-digitalwellbeing-plugin (0.2.3) UNRELEASED; urgency=medium
+digitalwellbeing-plugin (0.2.4) UNRELEASED; urgency=medium
 
   * Adapt to v23, make it dde-shell plugin
   * Fix app icon display; Use new semicircleText for piechart center
     text
   * Use DTK ColorSelector for auto theme
   * Use ChartJs2QML for better bar chart & hover bug
+  * convert id to name in barchart
 
- -- Yicheng Zhong <rubbishzyc@outlook.com>  Wed, 19 Feb 2025 16:00:24 +0800
+ -- Yicheng Zhong <rubbishzyc@outlook.com>  Wed, 19 Feb 2025 16:51:30 +0800
 
 digitalwellbeing-plugin (0.1.0) unstable; urgency=medium
 

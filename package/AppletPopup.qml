@@ -29,7 +29,8 @@ PanelPopup {
                                                                "icon": record.icon,
                                                                "stat": record.freq + ' times'
                                                            }))
-        barChart.update(JSON.parse(Applet.eventsDaily))
+        const id2info = new Map(records.map(record => ([record.id, {"name": record.name, "icon": record.icon}])))
+        barChart.update(JSON.parse(Applet.eventsDaily),id2info)
     }
     component BackgroundColor: D.Palette {
         normal {

@@ -20,7 +20,6 @@ Chart {
             intersect: false,
             callbacks: {
                 label: function(ctx) {
-                    console.log(JSON.stringify(ctx))
                     return ctx.yLabel.toFixed(2) + ' min'; // Format tooltip
                 }
             }
@@ -65,7 +64,7 @@ Chart {
     animationEasingType: Easing.Linear
     animationDuration: 200
 
-    function update(events) {
+    function update(events, id2info) {
         let datasets=[]
         const xlabels = U.range(0, 24)
         let apps = new Map()
@@ -95,18 +94,17 @@ Chart {
         for (const [app, datas] of apps.entries()) {
             if (app != "dde-lock")
                 datasets.push({
-                    label: app,
+                    label: id2info.get(app).name,
                     data: xlabels.map(i => summary[i][app] / 60 || 0),
                     backgroundColor: U.nextColor(),
                     borderWidth: 2,
-                    // borderSkipped: false,
                 })
         }
-        console.log(JSON.stringify(apps))
+        // console.log(JSON.stringify(apps))
         chartData = {
             labels: xlabels,
             datasets: datasets,
         }
-        console.log(JSON.stringify(chartData))
+        // console.log(JSON.stringify(chartData))
     }
 }
