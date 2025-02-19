@@ -1,3 +1,6 @@
 # [submodule "qtquick-dtk-style"]
 # 	path = qtquick-dtk-style
 # 	url = https://github.com/ZhongYic00/QtQuick-DTK-style.git
+[submodule "ChartJs2QML"]
+	path = ChartJs2QML
+	url = https://github.com/MichaelVoelkel/ChartJs2QML.git

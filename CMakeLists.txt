@@ -38,7 +38,15 @@ target_link_libraries(dock-digitalwellbeing PRIVATE
     ${DTK_NS}::Gui
 )
 
-ds_install_package(PACKAGE org.deepin.ds.dock.digitalwellbeing TARGET dock-digitalwellbeing)
+set(package_name org.deepin.ds.dock.digitalwellbeing)
+set(package_dirs ${PROJECT_BINARY_DIR}/packages/${package_name}/)
+set(chartjsdir ${PROJECT_SOURCE_DIR}/ChartJs2QML)
+
+file(COPY ${chartjsdir}/Chart.js DESTINATION ${package_dirs})
+file(COPY ${chartjsdir}/Chart.qml DESTINATION ${package_dirs})
+
+ds_install_package(PACKAGE ${package_name} TARGET dock-digitalwellbeing)
+
 # ds_handle_package_translation(
 # PACKAGE org.deepin.ds.dock.digitalwellbeing
 # QML_FILES
