@@ -31,6 +31,21 @@ PanelPopup {
                                                            }))
         barChart.update(JSON.parse(Applet.eventsDaily))
     }
+    component BackgroundColor: D.Palette {
+        normal {
+            common: ("transparent")
+            crystal: Qt.rgba(1, 1, 1, .05)
+        }
+        normalDark {
+            crystal: Qt.rgba(0, 0, 0, .3)
+        }
+        hovered {
+            crystal: Qt.rgba(1, 1, 1, .3)
+        }
+        hoveredDark {
+            crystal: Qt.rgba(0, 0, 0, .15)
+        }
+    }
 
     id: root
     ScrollView {
@@ -56,28 +71,21 @@ PanelPopup {
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 Layout.fillWidth: true
-                padding: 0
-                Component.onCompleted: console.log('piepane', height,
-                                                   contentHeight,
-                                                   pieChart.implicitHeight)
-                background: Rectangle {
-                    id: pieBg
-                    color: Qt.rgba(1, 1, 1, 0.3)
+                
+                background: D.BoxPanel {
                     radius: 5
-                    clip: true
+                    color1: BackgroundColor {}
+                    color2: color1
+                    D.ColorSelector.family: D.Palette.CrystalColor
+                    anchors.fill: parent
                 }
+                // onHoveredChanged: console.log(this,'hovered',hovered)
 
                 PieChart {
                     id: pieChart
-                    HoverHandler {
-                        onHoveredChanged: pieBg.color = hovered ? Qt.rgba(
-                                                                      1, 1, 1,
-                                                                      0.4) : Qt.rgba(
-                                                                      1,
-                                                                      1, 1, 0.2)
-                    }
                     implicitHeight: parent.width
                     implicitWidth: parent.width
+                    
                 }
             }
             ListModel {
@@ -91,12 +99,15 @@ PanelPopup {
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 Layout.fillWidth: true
+
+                // onHoveredChanged: console.log(this,'hovered',hovered)
                 padding: 0
-                background: Rectangle {
-                    id: barBg
-                    color: Qt.rgba(1, 1, 1, 0.3)
+                background: D.BoxPanel {
                     radius: 5
-                    clip: true
+                    color1: BackgroundColor {}
+                    color2: color1
+                    D.ColorSelector.family: D.Palette.CrystalColor
+                    anchors.fill: parent
                 }
 
                 ScrollView {
@@ -108,37 +119,24 @@ PanelPopup {
                     BarChart {
                         id: barChart
                         anchors.fill: parent
-                        HoverHandler {
-                            onHoveredChanged: barBg.color = hovered ? Qt.rgba(
-                                                                          1, 1,
-                                                                          1,
-                                                                          0.4) : Qt.rgba(
-                                                                          1, 1,
-                                                                          1,
-                                                                          0.2)
-                        }
                     }
                 }
             }
             Pane {
                 id: rankingPane
-                background: Rectangle {
-                    color: Qt.rgba(1, 1, 1, 0.3)
-                    HoverHandler {
-                        onHoveredChanged: parent.color = hovered ? Qt.rgba(
-                                                                       1, 1, 1,
-                                                                       0.4) : Qt.rgba(
-                                                                       1, 1, 1,
-                                                                       0.2)
-                    }
-                    radius: 5
-                    clip: true
-                }
-
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 Layout.fillWidth: true
-                onHeightChanged: console.log("ColLayout", height,
+
+                background: D.BoxPanel {
+                    radius: 5
+                    color1: BackgroundColor {}
+                    color2: color1
+                    D.ColorSelector.family: D.Palette.CrystalColor
+                    anchors.fill: parent
+                }
+
+                Component.onCompleted: console.log("ColLayout", height,
                                              implicitHeight, list.height,
                                              list.implicitHeight, contentHeight)
                 implicitHeight: contentHeight

@@ -93,6 +93,11 @@ AppletItem {
             console.log(this,width,height,Applet.basicStat,stats)
         }
 
+        Button {
+            id: colorRef
+            visible: false
+        }
+
         Timer {
             id: pageSwipeTimer
             interval: 5000
@@ -124,12 +129,14 @@ AppletItem {
                     text: U.getTimeString(root.stats.totalTime)
                     font.pointSize: 10
                     lineHeight: 0.8
+                    color: colorRef.D.ColorSelector.textColor
                 }
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("Screen Time")
                     font.pointSize: 8
                     lineHeight: 0.8
+                    color: colorRef.D.ColorSelector.textColor
                 }
             }
             Column {
@@ -145,14 +152,14 @@ AppletItem {
                     text: root.stats.longestUsedApp || '<unknown>'
                     font.pointSize: 10
                     lineHeight: 0.8
-                    // color: DPalette.text
+                    color: colorRef.D.ColorSelector.textColor
                 }
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("Longest Used")
                     font.pointSize: 8
                     lineHeight: 0.8
-                    // color: DPalette.text
+                    color: colorRef.D.ColorSelector.textColor
                 }
             }
             //        Item {

@@ -47,17 +47,20 @@ Column {
                     anchors.left: appicon.right
                     anchors.leftMargin: 5
                     elide: Text.ElideRight
+                    color: foldBtn.D.ColorSelector.textColor
                 }
                 Text {
                     text: stat
                     font.weight: Font.Thin
                     anchors.right: parent.right
                     anchors.rightMargin: 5
+                    color: foldBtn.D.ColorSelector.textColor
                 }
             }
         }
     }
     Button {
+        id: foldBtn
         flat: true
         height: 20
         width: list.width
