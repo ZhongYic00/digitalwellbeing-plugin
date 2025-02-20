@@ -10,22 +10,30 @@ import "utils.js" as U
 
 ChartView {
     id: root
-    //    property var pieSeries: pieSeries
-    property var update: records => {
-                             pieSeries.clear()
-                             U.initColor()
-                             records.forEach(record => {
-                                                 pieSeries.append(
-                                                     record.name,
-                                                     record.time).color = U.nextColor()
-                                             })
-                         }
+    function update(records) {
+        pieSeries.clear()
+        const tot = records.reduce( (s, r) => s + r.time, 0)
+        const major = records
+            .filter(r => r.time / tot >= 0.01);
+        const rest = records
+            .filter(r => r.time / tot < 0.01)
+            .reduce( (s, r) => s + r.time, 0);
+        U.initColor(major.length + 1);
+        [...records.filter(r => r.time / tot > 0.01), {name: "others", time: rest} ]
+            .forEach(record => {
+                let slice = pieSeries.append(
+                        record.name,
+                        record.time)
+                slice.color = U.nextColor()
+                slice.borderColor = Qt.darker(slice.color, D.DTK.themeType == D.ApplicationHelper.DarkType ? 1.3 : 0.8)
+                slice.borderWidth = 2
+            })
+    }
 
     theme: ChartView.ChartThemeLight
     antialiasing: true
     legend.visible: false
 
-    //    backgroundColor: Qt.rgba(1, 1, 1, 0.2)
     backgroundColor: "transparent"
     plotAreaColor: "transparent"
     onHeightChanged: console.log('piechart', height, implicitHeight)
@@ -58,18 +66,21 @@ ChartView {
                    }
     }
 
+    Button {
+        id: colorRef
+        visible: false
+    }
     Column {
         x: 0
         y: (parent.height - height) / 2
         width: parent.width
         property real holeWidth: width * 0.6
-        Component.onCompleted: console.log(parent.width, width, height, x, y)
         SemicircleText {
             text: pieSeries.curSlice ? pieSeries.curSlice.label : "Today"
             cR: parent.holeWidth / 2
             anchors.horizontalCenter: parent.horizontalCenter
             maxFontSize: 26
-            fontColor: D.ColorSelector.textColor
+            fontColor: colorRef.D.ColorSelector.textColor
         }
 
         Column {
@@ -79,13 +90,14 @@ ChartView {
                 text: U.getTimeString(
                         pieSeries.curSlice ? pieSeries.curSlice.value : pieSeries.sum)
                 anchors.horizontalCenter: parent.horizontalCenter
-                color: "black"
+                color: colorRef.D.ColorSelector.textColor
                 font.pointSize: 18
             }
             Text {
                 text: pieSeries.curSlice ? U.getPercent(
                                             pieSeries.curSlice.value / pieSeries.sum) : ''
                 anchors.horizontalCenter: parent.horizontalCenter
+                color: colorRef.D.ColorSelector.textColor
             }
         }
         
