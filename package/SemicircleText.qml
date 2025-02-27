@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2025 Yicheng Zhong <rubbishzyc@outlook.com>.
+// SPDX-License-Identifier: MIT
 import QtQuick 2.15
 import QtQuick.Window 2.15
 

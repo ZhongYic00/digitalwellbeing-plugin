@@ -11,5 +11,5 @@ Vcs-Git: https://github.com/zhongyic00/digitalwellbeing-plugin.git
 Package: digitalwellbeing-plugin
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: A dde-dock plugin that provides convenient viewing of your digital-wellbeing status
- A dde-dock plugin that provides convenient viewing of your digital-wellbeing status, which includes your screen time, your most used apps by frequency or time, each app's usage and so on.
+Description: dde-shell plugin for viewing digital-wellbeing status.
+ dde-shell plugin that provides convenient view of your digital-wellbeing status, which includes your screen time, your most used apps by frequency or time, each app's usage and so on.

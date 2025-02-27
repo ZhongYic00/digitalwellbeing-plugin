@@ -1,6 +1,5 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
-//
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: 2025 Yicheng Zhong <rubbishzyc@outlook.com>.
+// SPDX-License-Identifier: MIT
 
 #include "digitalwellbeing.h"
 #include "applet.h"
@@ -18,13 +17,12 @@ static DDBusSender dwDbus()
 
 const auto dcall = [](QDBusMessage msg) {
     auto resp = QDBusConnection::sessionBus().call(msg);
-    qDebug() << "dcall::(" << msg << ")" << resp;
+    // qDebug() << "dcall::(" << msg << ")" << resp;
     return resp.type() == QDBusMessage::ReplyMessage ? resp.arguments() : QList<QVariant>({QVariant()});
 };
 
 DWItem::DWItem(QObject *parent)
-    : m_iconName("deepin-launcher")
-    , m_basicStat(dcall(QDBusMessage::createMethodCall("org.deepin.dde.digitalWellbeing",
+    : m_basicStat(dcall(QDBusMessage::createMethodCall("org.deepin.dde.digitalWellbeing",
                                                        "/org/deepin/dde/digitalWellbeing",
                                                        "org.deepin.dde.digitalWellbeing",
                                                        "getBasicStatJson"))
@@ -48,19 +46,6 @@ bool DWItem::init()
 {
     DApplet::init();
     return true;
-}
-
-QString DWItem::iconName() const
-{
-    return m_iconName;
-}
-
-void DWItem::setIconName(const QString &iconName)
-{
-    if (iconName != m_iconName) {
-        m_iconName = iconName;
-        Q_EMIT iconNameChanged();
-    }
 }
 
 QString DWItem::basicStat() const
