@@ -77,17 +77,72 @@ AppletItem {
         toolTipX: DockPanelPositioner.x
         toolTipY: DockPanelPositioner.y
     }
+    
 
-    Rectangle {
+    Pane {
         id: root
         objectName: "DigitalWellbeingPluginItem"
         clip: true
-        border {
-            color: "yellow"
-            width: 1
-        }
-        color: "transparent"
         anchors.fill: parent
+
+        rightPadding: 3
+        leftPadding: rightPadding
+        bottomPadding: 2
+
+        property D.Palette backgroundColor: D.Palette {
+            normal {
+                common: ("transparent")
+                crystal: ("transparent")
+            }
+            normalDark {
+                crystal: ("transparent")
+            }
+            hovered {
+                crystal: Qt.rgba(1, 1, 1, .3)
+            }
+            hoveredDark {
+                crystal: Qt.rgba(1, 1, 1, .15)
+            }
+        }
+        property D.Palette insideBorderColor: D.Palette {
+            normal {
+                crystal: ("transparent")
+            }
+            normalDark {
+                crystal: ("transparent")
+            }
+            hovered {
+                common: ("transparent")
+                crystal: Qt.rgba(1.0, 1.0, 1.0, 0.1)
+            }
+            hoveredDark {
+                crystal: Qt.rgba(1.0, 1.0, 1.0, 0.05)
+            }
+        }
+        property D.Palette outsideBorderColor: D.Palette {
+            normal {
+                crystal: ("transparent")
+            }
+            normalDark {
+                crystal: ("transparent")
+            }
+            hovered {
+                crystal: Qt.rgba(0.0, 0.0, 0.0, 0.03)
+            }
+            hoveredDark {
+                crystal: Qt.rgba(0.0, 0.0, 0.0, 0.05)
+            }
+        }
+
+        background: D.BoxPanel {
+            radius: 5
+            color1: parent.backgroundColor
+            color2: color1
+            insideBorderColor: parent.insideBorderColor
+            outsideBorderColor: parent.outsideBorderColor
+            D.ColorSelector.family: D.Palette.CrystalColor
+        }
+        
         property var stats: JSON.parse(Applet.basicStat)
         Component.onCompleted: {
             console.log(this,width,height,Applet.basicStat,stats)
@@ -107,17 +162,13 @@ AppletItem {
         }
         onStatsChanged: console.log('stats changed', Applet.basicStat)
 
-        SwipeView {
+        contentItem: SwipeView {
             id: view
 
             currentIndex: 0
-            anchors {
-                fill: parent
-                verticalCenter: parent.verticalCenter
-                bottomMargin: 8
-            }
-            topPadding: 8
+            topPadding: 5
             interactive: false
+            clip: true
 
             Column {
                 id: firstPage
@@ -169,14 +220,23 @@ AppletItem {
 
         // PageIndicator {
         //     id: indicator
-        //     height: 3
+        //     height: 2
 
         //     count: view.count
         //     currentIndex: view.currentIndex
 
-        //     anchors.bottom: view.bottom
+        //     delegate: Component {
+        //         Rectangle {
+        //             height: 2
+        //             width: 6
+        //             color: indicator.currentIndex === index ? colorRef.D.ColorSelector.textColor : "transparent"
+        //         }
+        //     }
+
+        //     anchors.bottom: parent.bottom
         //     anchors.horizontalCenter: parent.horizontalCenter
         // }
+        
         onXChanged: updatePopupPos()
         onYChanged: updatePopupPos()
         Timer {
@@ -190,16 +250,16 @@ AppletItem {
         }
         TapHandler {
             acceptedButtons: Qt.LeftButton
-            property bool toggleOpen: true
             onTapped: {
                 console.info('digitalwellbeing popup toggled',popupItem.popupVisible)
-                if (toggleOpen) {
+                if (!popupItem.popupVisible) {
                     popupItem.update()
                     popupItem.open()
                     var point = Applet.rootObject.mapToItem(null, Applet.rootObject.width / 2, Applet.rootObject.height / 2)
                     popupItem.DockPanelPositioner.bounding = Qt.rect(point.x, point.y, popupItem.width, popupItem.height)
+                } else {
+                    popupItem.close()
                 }
-                toggleOpen = ! toggleOpen
                 toolTip.close()
             }
         }

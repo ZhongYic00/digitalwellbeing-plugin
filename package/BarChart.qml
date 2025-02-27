@@ -66,7 +66,6 @@ Chart {
 
     function update(events, id2info) {
         let datasets=[]
-        const xlabels = U.range(0, 24)
         let apps = new Map()
         let summary = events
             .reduce((prev, cur) => {
@@ -78,18 +77,19 @@ Chart {
             while (cur.teoff > prev.length * 3600) {
                 let hourend = prev.length * 3600
                 if (!prev[prev.length - 1][cur.id])
-                prev[prev.length - 1][cur.id] = 0
+                    prev[prev.length - 1][cur.id] = 0
                 prev[prev.length - 1][cur.id] += hourend - till
                 till = hourend
                 prev.push({})
             }
             if (!prev[prev.length - 1][cur.id])
-            prev[prev.length - 1][cur.id] = 0
+                prev[prev.length - 1][cur.id] = 0
             prev[prev.length - 1][cur.id] += cur.teoff - till
             return prev
         }, [])
         while (summary.length < 24)
             summary.push({})
+        const xlabels = U.range(0, 24)//.filter(x => (Object.keys(summary[x]).filter(a => a!='dde-lock').length > 0) )
         U.initColor(apps.size)
         for (const [app, datas] of apps.entries()) {
             if (app != "dde-lock")
@@ -98,6 +98,7 @@ Chart {
                     data: xlabels.map(i => summary[i][app] / 60 || 0),
                     backgroundColor: U.nextColor(),
                     borderWidth: 2,
+                    barPercentage: 0.7
                 })
         }
         // console.log(JSON.stringify(apps))

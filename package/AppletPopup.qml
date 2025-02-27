@@ -44,7 +44,7 @@ PanelPopup {
             crystal: Qt.rgba(1, 1, 1, .3)
         }
         hoveredDark {
-            crystal: Qt.rgba(0, 0, 0, .15)
+            crystal: Qt.rgba(0, 0, 0, .1)
         }
     }
 
@@ -115,7 +115,7 @@ PanelPopup {
                     implicitWidth: parent.width
                     implicitHeight: implicitWidth
                     contentHeight: height
-                    contentWidth: 3 * width
+                    contentWidth: 2 * width
                     clip: true
                     BarChart {
                         id: barChart
